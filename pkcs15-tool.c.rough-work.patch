@@ -1,0 +1,27 @@
+diff -upr -x .git OpenSC.orig/src/tools/pkcs15-tool.c OpenSC/src/tools/pkcs15-tool.c
+--- OpenSC.orig/src/tools/pkcs15-tool.c 2022-09-05 11:55:21.686510100 +0900
++++ OpenSC/src/tools/pkcs15-tool.c      2022-09-15 16:07:20.844507000 +0900
+@@ -796,6 +796,11 @@ static int read_public_key(void)
+	sc_pkcs15_hex_string_to_id(opt_pubkey, &id);
+
+	r = sc_pkcs15_find_pubkey_by_id(p15card, &id, &obj);
++
++	if ( !strncmp( p15card->tokeninfo->label, "JPKI", 4 ) ) {	/* JPKI */
++		r = SC_ERROR_OBJECT_NOT_FOUND;				/* JPKI */
++	}								/* JPKI */
++
+	if (r >= 0) {
+		if (verbose)
+			printf("Reading public key with ID '%s'\n", opt_pubkey);
+@@ -967,6 +972,11 @@ static int read_ssh_key(void)
+	sc_pkcs15_hex_string_to_id(opt_pubkey, &id);
+
+	r = sc_pkcs15_find_pubkey_by_id(p15card, &id, &obj);
++
++	if ( !strncmp( p15card->tokeninfo->label, "JPKI", 4 ) ) {	/* JPKI */
++		r = SC_ERROR_OBJECT_NOT_FOUND;				/* JPKI */
++	}								/* JPKI */
++
+	if (r >= 0) {
+		if (verbose)
+			fprintf(stderr,"Reading ssh key with ID '%s'\n", opt_pubkey);
