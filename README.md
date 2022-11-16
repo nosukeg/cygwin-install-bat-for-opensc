@@ -330,8 +330,8 @@ diff -upr -x .git OpenSC.orig/src/tools/pkcs15-tool.c OpenSC/src/tools/pkcs15-to
 
 	r = sc_pkcs15_find_pubkey_by_id(p15card, &id, &obj);
 +
-+	if ( !strncmp( p15card->tokeninfo->label, "JPKI", 4 ) ) {i	/* JPKI */
-+		r = SC_ERROR_OBJECT_NOT_FOUND;i				/* JPKI */
++	if ( !strncmp( p15card->tokeninfo->label, "JPKI", 4 ) ) {	/* JPKI */
++		r = SC_ERROR_OBJECT_NOT_FOUND;				/* JPKI */
 +	}								/* JPKI */
 +
 	if (r >= 0) {
